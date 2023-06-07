@@ -1929,15 +1929,6 @@ wait(2)
 firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'foor mode !',true,6)
 firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Good Luck',true,6)
 
-while true do
-    while task.wait(0.1) do
-    for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
-  if v:IsA("BasePart") then
-        v.Material = Enum.Material.Limestone
-        v.Color = Color3.new(1.99, 0.25098, 0.1) -- sets the color
-        end
-    end
-end
 
     wait(69)
 local GG = Instance.new("Model")
@@ -2292,8 +2283,17 @@ camShake:Start()
 			
 			task.wait(5)
 			Eyes:Destroy()
-
+--stop--stop-you-this-is-not-foor-mode-is-red-mode
+while true do
+    while task.wait(0.1) do
+    for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
+  if v:IsA("BasePart") then
+        v.Material = Enum.Material.Limestone
+        v.Color = Color3.new(1.99, 0.25098, 0.1) -- sets the color
+        end
+    end
 end
+
 
 --stop--stop--stop--stop--stop
 --stop
