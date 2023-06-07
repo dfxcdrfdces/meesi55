@@ -1,11 +1,3 @@
-while task.wait(0.1) do
-    for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
-  if v:IsA("BasePart") then
-        v.Material = Enum.Material.Limestone
-        v.Color = Color3.new(1.99, 0.25098, 0.1) -- sets the color
-        end
-    end
-end
 --.
 --stop--stop--stop--stop--stop
 --stop
@@ -1938,6 +1930,15 @@ firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent
 firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Good Luck',true,6)
 
 while true do
+    while task.wait(0.1) do
+    for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
+  if v:IsA("BasePart") then
+        v.Material = Enum.Material.Limestone
+        v.Color = Color3.new(1.99, 0.25098, 0.1) -- sets the color
+        end
+    end
+end
+
     wait(69)
 local GG = Instance.new("Model")
 GG.Name = "Rush" --name 
@@ -2101,7 +2102,6 @@ game.Lighting.Caves.Enabled = true
 wait(1.9)
 game.Lighting.Caves.Enabled = false
 		game.TweenService:Create(script.Parent,TweenInfo.new(0.4,Enum.EasingStyle.Circular,Enum.EasingDirection.In),{CFrame = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].RoomEntrance.CFrame}):Play()	wait(4.6)		game.TweenService:Create(script.Parent,TweenInfo.new(3.3,Enum.EasingStyle.Circular,Enum.EasingDirection.In),{CFrame = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Door.Door.CFrame}):Play() 			
-while true do
     wait(0.1)
     if not game.Players.LocalPlayer.Character:GetAttribute("Hiding") then
 		game.Players.LocalPlayer.Character.Humanoid:TakeDamage(100)
@@ -2115,14 +2115,13 @@ while true do
 
 end	wait(5.4)	        psst.Anchored = false wait(3)  GG:Destroy()
 
-end     
+     
 
-
+end
 end
 coroutine.wrap(YSVX_fake_script)()
- 
-end
-wait(249)
+ wait(245)
+
 
 			local Room = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
 local CameraShaker = require(game.ReplicatedStorage.CameraShaker)
