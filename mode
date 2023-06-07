@@ -6,176 +6,6 @@ while task.wait(0.1) do
         end
     end
 end
-			local Room = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
-local CameraShaker = require(game.ReplicatedStorage.CameraShaker)
-
-local camara = game.Workspace.CurrentCamera
-
-local camShake = CameraShaker.new(Enum.RenderPriority.Camera.Value, function(shakeCf)
-
-	camara.CFrame = camara.CFrame * shakeCf
-
-end)
-
-camShake:Start()
-
-			local Eyes = Instance.new("Part", workspace)
-			Eyes.Transparency = 1
-			local Sound = Instance.new("Sound", Eyes)
-
-			local Attachment = Instance.new("Attachment", Eyes)
-
-			local Spark = Instance.new("ParticleEmitter", Attachment)
-			Spark.Texture = "rbxassetid://0"
-			Spark.Color = ColorSequence.new{
-				ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 11, 39)),
-				ColorSequenceKeypoint.new(0.324, Color3.fromRGB(32, 14, 22)),
-				ColorSequenceKeypoint.new(0.441, Color3.fromRGB(20, 30, 14)),
-				ColorSequenceKeypoint.new(0.527, Color3.fromRGB(14, 18, 27)),
-				ColorSequenceKeypoint.new(0.675, Color3.fromRGB(15, 14, 27)),
-				ColorSequenceKeypoint.new(1, Color3.fromRGB(17, 8, 26))
-			}
-			Spark.Size = NumberSequence.new(8)
-			Spark.Transparency = NumberSequence.new{
-				NumberSequenceKeypoint.new(0, .975),
-				NumberSequenceKeypoint.new(0.247, 0),
-				NumberSequenceKeypoint.new(0.498, .0125),
-				NumberSequenceKeypoint.new(0.786, .0375),
-				NumberSequenceKeypoint.new(1, 1),
-			}
-
-			Spark.Drag = 15
-			Spark.LockedToPart = true
-			Spark.VelocityInheritance = 0.5
-
-			Spark.Lifetime = NumberRange.new(0.5, 2)
-			Spark.Rate = 25
-			Spark.Rotation = NumberRange.new(-50, 50)
-			Spark.RotSpeed = NumberRange.new(-5, -5)
-			Spark.Speed = NumberRange.new(1, 3)
-			Spark.SpreadAngle = Vector2.new(180, 180)
-
-			Spark.Enabled = true
-
-			local EyesParticle = Instance.new("ParticleEmitter", Attachment)
-			EyesParticle.LightInfluence = 0
-			EyesParticle.Brightness = 12
-			EyesParticle.Size = NumberSequence.new(4)
-			EyesParticle.Texture = "http://www.roblox.com/asset/?id=13625569938"
-			EyesParticle.Color = ColorSequence.new{
-				ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),
-				ColorSequenceKeypoint.new(0.46, Color3.fromRGB(255,255,255)),
-				ColorSequenceKeypoint.new(0.509, Color3.fromRGB(129,97,255)),
-				ColorSequenceKeypoint.new(0.612, Color3.fromRGB(17, 0, 255)),
-				ColorSequenceKeypoint.new(0.649, Color3.fromRGB(255, 58, 163)),
-				ColorSequenceKeypoint.new(0.848, Color3.fromRGB(255, 255, 255)),
-				ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
-			}
-			EyesParticle.Transparency = NumberSequence.new{
-				NumberSequenceKeypoint.new(0, .975),
-				NumberSequenceKeypoint.new(0.247, 0),
-				NumberSequenceKeypoint.new(0.498, .0125),
-				NumberSequenceKeypoint.new(0.786, .0375),
-				NumberSequenceKeypoint.new(1, 1),
-			}
-
-			EyesParticle.Lifetime = NumberRange.new(0.2, .5)
-			EyesParticle.Rate = 34343434343
-			EyesParticle.Rotation = NumberRange.new(-1, 1)
-			EyesParticle.RotSpeed = NumberRange.new(-1, 1)
-			EyesParticle.Speed = NumberRange.new(0,0)
-
-			EyesParticle.Drag = 1
-			EyesParticle.LockedToPart = true
-			EyesParticle.VelocityInheritance = 0.5
-			EyesParticle.Transparency = NumberSequence.new{
-				NumberSequenceKeypoint.new(0, .994),
-				NumberSequenceKeypoint.new(0.496, .637),
-				NumberSequenceKeypoint.new(1, 1),
-			}
-
-			Sound.SoundId = "rbxassetid://0"
-			Sound.PlaybackSpeed = 0.3
-			Sound:Play()
-
-			local flange = Instance.new("FlangeSoundEffect", Sound)
-			flange.Depth = 0.475
-			flange.Mix = 0.97
-			flange.Rate = 2
-
-			local Sound2 = Instance.new("Sound", Eyes)
-			Sound2.SoundId = "rbxassetid://0"
-			Sound2.PlaybackSpeed = 1
-			Sound2.Looped = true
-			Sound2:Play()
-
-			local Sound3 = Instance.new("Sound", Eyes)
-			Sound3.SoundId = "rbxassetid://0"
-			Sound3.PlaybackSpeed = 1.05
-
-			Eyes.Name = "Lookman"
-
-			Eyes.Anchored = true
-			Eyes.CanCollide = false
-			Eyes.Size = Vector3.new(2.5,2.5,2.5)
-			Eyes.Position = Room.Base.Position + Vector3.new(0,8,0)
-
-
-			local Light1 = Instance.new("PointLight", Eyes)
-
-			Light1.Brightness = 0
-			Light1.Color = Color3.fromRGB(0)
-			Light1.Enabled = true
-			Light1.Range = 0
-			Light1.Shadows = true
-
-			local Light2 = Instance.new("PointLight", Eyes)
-
-			Light2.Brightness = 0
-			Light2.Color = Color3.fromRGB(0)
-			Light2.Enabled = true
-			Light2.Range = 0
-			Light2.Shadows = false
-
-			coroutine.wrap(function()
-				task.wait(1)
-				while Spark.Enabled do
-					local Camera = workspace.Camera
-					local Character = game:GetService('Players').LocalPlayer.Character
-
-					local RunService = game:GetService('RunService')
-
-					local Parameters = RaycastParams.new()
-					Parameters.FilterDescendantsInstances = {Character, Eyes}
-					Parameters.FilterType = Enum.RaycastFilterType.Blacklist
-
-					local Vector, OnScreen = Camera:WorldToViewportPoint(Eyes.Position)
-
-					if OnScreen then
-						if workspace:Raycast(Camera.CFrame.Position, Eyes.Position - Camera.CFrame.Position, Parameters) == nil then
-                            			EyesParticle.Texture = "http://www.roblox.com/asset/?id=13671048771"
-
-                            camShake:ShakeOnce(6, 10, 0.1, 4.5)
-
-						end
-					end
-
-					task.wait(.175)
-				end
-			end)()
-			game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-			
-			Sound2:Stop()
-			
-			EyesParticle.Enabled = false
-			Spark.Enabled = false
-			
-			Light1:Destroy()
-			Light2:Destroy()
-			
-			task.wait(5)
-			Eyes:Destroy()
-
 --.
 --stop--stop--stop--stop--stop
 --stop
@@ -2292,6 +2122,178 @@ end
 coroutine.wrap(YSVX_fake_script)()
  
 end
+wait(249)
+
+			local Room = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
+local CameraShaker = require(game.ReplicatedStorage.CameraShaker)
+
+local camara = game.Workspace.CurrentCamera
+
+local camShake = CameraShaker.new(Enum.RenderPriority.Camera.Value, function(shakeCf)
+
+	camara.CFrame = camara.CFrame * shakeCf
+
+end)
+
+camShake:Start()
+
+			local Eyes = Instance.new("Part", workspace)
+			Eyes.Transparency = 1
+			local Sound = Instance.new("Sound", Eyes)
+
+			local Attachment = Instance.new("Attachment", Eyes)
+
+			local Spark = Instance.new("ParticleEmitter", Attachment)
+			Spark.Texture = "rbxassetid://0"
+			Spark.Color = ColorSequence.new{
+				ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 11, 39)),
+				ColorSequenceKeypoint.new(0.324, Color3.fromRGB(32, 14, 22)),
+				ColorSequenceKeypoint.new(0.441, Color3.fromRGB(20, 30, 14)),
+				ColorSequenceKeypoint.new(0.527, Color3.fromRGB(14, 18, 27)),
+				ColorSequenceKeypoint.new(0.675, Color3.fromRGB(15, 14, 27)),
+				ColorSequenceKeypoint.new(1, Color3.fromRGB(17, 8, 26))
+			}
+			Spark.Size = NumberSequence.new(8)
+			Spark.Transparency = NumberSequence.new{
+				NumberSequenceKeypoint.new(0, .975),
+				NumberSequenceKeypoint.new(0.247, 0),
+				NumberSequenceKeypoint.new(0.498, .0125),
+				NumberSequenceKeypoint.new(0.786, .0375),
+				NumberSequenceKeypoint.new(1, 1),
+			}
+
+			Spark.Drag = 15
+			Spark.LockedToPart = true
+			Spark.VelocityInheritance = 0.5
+
+			Spark.Lifetime = NumberRange.new(0.5, 2)
+			Spark.Rate = 25
+			Spark.Rotation = NumberRange.new(-50, 50)
+			Spark.RotSpeed = NumberRange.new(-5, -5)
+			Spark.Speed = NumberRange.new(1, 3)
+			Spark.SpreadAngle = Vector2.new(180, 180)
+
+			Spark.Enabled = true
+
+			local EyesParticle = Instance.new("ParticleEmitter", Attachment)
+			EyesParticle.LightInfluence = 0
+			EyesParticle.Brightness = 12
+			EyesParticle.Size = NumberSequence.new(4)
+			EyesParticle.Texture = "http://www.roblox.com/asset/?id=13625569938"
+			EyesParticle.Color = ColorSequence.new{
+				ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),
+				ColorSequenceKeypoint.new(0.46, Color3.fromRGB(255,255,255)),
+				ColorSequenceKeypoint.new(0.509, Color3.fromRGB(129,97,255)),
+				ColorSequenceKeypoint.new(0.612, Color3.fromRGB(17, 0, 255)),
+				ColorSequenceKeypoint.new(0.649, Color3.fromRGB(255, 58, 163)),
+				ColorSequenceKeypoint.new(0.848, Color3.fromRGB(255, 255, 255)),
+				ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+			}
+			EyesParticle.Transparency = NumberSequence.new{
+				NumberSequenceKeypoint.new(0, .975),
+				NumberSequenceKeypoint.new(0.247, 0),
+				NumberSequenceKeypoint.new(0.498, .0125),
+				NumberSequenceKeypoint.new(0.786, .0375),
+				NumberSequenceKeypoint.new(1, 1),
+			}
+
+			EyesParticle.Lifetime = NumberRange.new(0.2, .5)
+			EyesParticle.Rate = 34343434343
+			EyesParticle.Rotation = NumberRange.new(-1, 1)
+			EyesParticle.RotSpeed = NumberRange.new(-1, 1)
+			EyesParticle.Speed = NumberRange.new(0,0)
+
+			EyesParticle.Drag = 1
+			EyesParticle.LockedToPart = true
+			EyesParticle.VelocityInheritance = 0.5
+			EyesParticle.Transparency = NumberSequence.new{
+				NumberSequenceKeypoint.new(0, .994),
+				NumberSequenceKeypoint.new(0.496, .637),
+				NumberSequenceKeypoint.new(1, 1),
+			}
+
+			Sound.SoundId = "rbxassetid://0"
+			Sound.PlaybackSpeed = 0.3
+			Sound:Play()
+
+			local flange = Instance.new("FlangeSoundEffect", Sound)
+			flange.Depth = 0.475
+			flange.Mix = 0.97
+			flange.Rate = 2
+
+			local Sound2 = Instance.new("Sound", Eyes)
+			Sound2.SoundId = "rbxassetid://0"
+			Sound2.PlaybackSpeed = 1
+			Sound2.Looped = true
+			Sound2:Play()
+
+			local Sound3 = Instance.new("Sound", Eyes)
+			Sound3.SoundId = "rbxassetid://0"
+			Sound3.PlaybackSpeed = 1.05
+
+			Eyes.Name = "Lookman"
+
+			Eyes.Anchored = true
+			Eyes.CanCollide = false
+			Eyes.Size = Vector3.new(2.5,2.5,2.5)
+			Eyes.Position = Room.Base.Position + Vector3.new(0,8,0)
+
+
+			local Light1 = Instance.new("PointLight", Eyes)
+
+			Light1.Brightness = 0
+			Light1.Color = Color3.fromRGB(0)
+			Light1.Enabled = true
+			Light1.Range = 0
+			Light1.Shadows = true
+
+			local Light2 = Instance.new("PointLight", Eyes)
+
+			Light2.Brightness = 0
+			Light2.Color = Color3.fromRGB(0)
+			Light2.Enabled = true
+			Light2.Range = 0
+			Light2.Shadows = false
+
+			coroutine.wrap(function()
+				task.wait(1)
+				while Spark.Enabled do
+					local Camera = workspace.Camera
+					local Character = game:GetService('Players').LocalPlayer.Character
+
+					local RunService = game:GetService('RunService')
+
+					local Parameters = RaycastParams.new()
+					Parameters.FilterDescendantsInstances = {Character, Eyes}
+					Parameters.FilterType = Enum.RaycastFilterType.Blacklist
+
+					local Vector, OnScreen = Camera:WorldToViewportPoint(Eyes.Position)
+
+					if OnScreen then
+						if workspace:Raycast(Camera.CFrame.Position, Eyes.Position - Camera.CFrame.Position, Parameters) == nil then
+                            			EyesParticle.Texture = "http://www.roblox.com/asset/?id=13671048771"
+
+                            camShake:ShakeOnce(6, 10, 0.1, 4.5)
+
+						end
+					end
+
+					task.wait(.175)
+				end
+			end)()
+			game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+			
+			Sound2:Stop()
+			
+			EyesParticle.Enabled = falseac
+			Spark.Enabled = false
+			
+			Light1:Destroy()
+			Light2:Destroy()
+			
+			task.wait(5)
+			Eyes:Destroy()
+
 end
 
 --stop--stop--stop--stop--stop
