@@ -1,5 +1,3 @@
-game.ReplicatedStorage.Entity.Screech.Top.Slime_Top.Color = Color3.new(1, 0, 0)
-game.ReplicatedStorage.Entity.Screech.Bottom.Slime_Bottom.Color = Color3.new(1, 0, 0)
 --stop--stop--stop--stop--stop
 --stop
 --stop
@@ -2285,16 +2283,6 @@ camShake:Start()
 			task.wait(5)
 			Eyes:Destroy()
 --stop--stop-you-this-is-not-foor-mode-is-red-mode
-while true do
-    while task.wait(0.1) do
-    for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
-  if v:IsA("BasePart") then
-        v.Material = Enum.Material.Limestone
-        v.Color = Color3.new(1.99, 0.25098, 0.1) -- sets the color
-        end
-    end
-end
-
 
 --stop--stop--stop--stop--stop
 --stop
