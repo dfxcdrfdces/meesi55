@@ -1,4 +1,5 @@
---.
+game.ReplicatedStorage.Entity.Screech.Top.Slime_Top.Color = Color3.new(1, 0, 0)
+game.ReplicatedStorage.Entity.Screech.Bottom.Slime_Bottom.Color = Color3.new(1, 0, 0)
 --stop--stop--stop--stop--stop
 --stop
 --stop
